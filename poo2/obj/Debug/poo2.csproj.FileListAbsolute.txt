@@ -1,0 +1,10 @@
+D:\Proyectos\POO2\poo2\poo2\bin\Debug\poo2.exe.config
+D:\Proyectos\POO2\poo2\poo2\bin\Debug\poo2.exe
+D:\Proyectos\POO2\poo2\poo2\bin\Debug\poo2.pdb
+D:\Proyectos\POO2\poo2\poo2\obj\Debug\poo2.csprojResolveAssemblyReference.cache
+D:\Proyectos\POO2\poo2\poo2\obj\Debug\poo2.Form1.resources
+D:\Proyectos\POO2\poo2\poo2\obj\Debug\poo2.Properties.Resources.resources
+D:\Proyectos\POO2\poo2\poo2\obj\Debug\poo2.csproj.GenerateResource.cache
+D:\Proyectos\POO2\poo2\poo2\obj\Debug\poo2.csproj.CoreCompileInputs.cache
+D:\Proyectos\POO2\poo2\poo2\obj\Debug\poo2.exe
+D:\Proyectos\POO2\poo2\poo2\obj\Debug\poo2.pdb
