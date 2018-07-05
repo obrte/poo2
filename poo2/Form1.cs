@@ -25,7 +25,7 @@ namespace poo2
             //producto.pNombre = "Miller";
             //producto.pPrecio = 36.00f;
             //rtb1.Text += producto.pCodigo + Environment.NewLine + producto.pNombre + Environment.NewLine + producto.pPrecio;
-            
+            //Comentario nuevo
         }
         private void cargaProducto()
         {
