@@ -36,6 +36,7 @@ namespace poo2
         }
         private void cargaProducto()
         {
+            dgv1.Columns[2].DefaultCellStyle.Format = "N2";
             try
             {
                 for (int i = 0; i < producto.Length; i++)
