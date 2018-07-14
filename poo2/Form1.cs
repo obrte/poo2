@@ -85,6 +85,7 @@ namespace poo2
             if (!existe)
             {
                 dgv1.Rows.Add(txtCod.Text, txtNombre.Text, txtPrecio.Text);
+                numerar();
                 limpiar();
             }
             
@@ -122,6 +123,7 @@ namespace poo2
             {
                 dgv1[1, rowSelect].Value = txtNombre.Text;
                 dgv1[2, rowSelect].Value = txtPrecio.Text;
+                numerar();
                 limpiar();
             }
             
@@ -150,6 +152,17 @@ namespace poo2
             txtCod.Text = dgv1[0, rowSelect].Value.ToString();
             txtNombre.Text = dgv1[1, rowSelect].Value.ToString();
             txtPrecio.Text = dgv1[2, rowSelect].Value.ToString();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MessageBox.Show("ya guardaste?");
+            dgv1.SelectAll();
+            dgv1.ClipboardCopyMode =
+                DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            DataObject dataObject = dgv1.GetClipboardContent();
+            File.WriteAllText("Productos.csv",
+                dataObject.GetText(TextDataFormat.CommaSeparatedValue));
         }
     }
 
