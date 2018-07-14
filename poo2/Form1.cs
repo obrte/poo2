@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace poo2
 {
@@ -15,6 +16,7 @@ namespace poo2
 
         private List<Productos> listaProductos = new List<Productos>();
         Productos[] producto = new Productos[3];
+        private int rowSelect;
         public Form1()
         {
             InitializeComponent();
@@ -37,18 +39,117 @@ namespace poo2
         private void cargaProducto()
         {
             dgv1.Columns[2].DefaultCellStyle.Format = "N2";
+            
             try
             {
-                for (int i = 0; i < producto.Length; i++)
+                int counter = 0;
+                string line;
+                StreamReader file = new StreamReader("productos.csv");
+                while ((line = file.ReadLine()) != null)
                 {
-                    dgv1.Rows.Add(producto[i].pCodigo, producto[i].pNombre, producto[i].pPrecio);
+                    rtb1.Text += (line + Environment.NewLine);
+                    dgv1.Rows.Add(line.Split(','));
+                    counter++;
+                }
+                file.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            numerar();
+            
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            bool existe = false;
+            for (int i = 0; i < dgv1.Rows.Count; i++)
+            {
+                if(dgv1[0,i].Value.ToString() == txtCod.Text)
+                {
+                   if(MessageBox.Show("el Codigo que ya existe, desea corregir?", "Alerta", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+                        existe = true;
+                        break;
+                    }
+                    else
+                    {
+                        existe = true;
+                        limpiar();
+                        break;
+                    }
+
                 }
             }
-            catch (Exception err)
+            if (!existe)
             {
-
-                MessageBox.Show("ERROR:" + Environment.NewLine + err);
+                dgv1.Rows.Add(txtCod.Text, txtNombre.Text, txtPrecio.Text);
+                limpiar();
             }
+            
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Desea eliminar el siguiente producto?" 
+                + Environment.NewLine + "Nombre: " 
+                + txtNombre.Text 
+                + Environment.NewLine 
+                + "Precio: $"
+                + txtPrecio.Text, "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                dgv1.Rows.RemoveAt(rowSelect);
+            }
+            limpiar();
+        }
+
+        private void btnRel_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Desea modificar los siguinetes valores?"
+                + Environment.NewLine
+                + "Nombre: "
+                + dgv1[1, rowSelect].Value.ToString()
+                + " --> "
+                + txtNombre.Text
+                + Environment.NewLine
+                + "Precio: $"
+                + dgv1[2, rowSelect].Value.ToString()
+                + " --> $" 
+                + txtPrecio.Text
+                + Environment.NewLine, "Update",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                dgv1[1, rowSelect].Value = txtNombre.Text;
+                dgv1[2, rowSelect].Value = txtPrecio.Text;
+                limpiar();
+            }
+            
+
+        }
+
+        private void limpiar()
+        {
+            txtCod.Clear();
+            txtNombre.Clear();
+            txtPrecio.Clear();
+            txtCod.Focus();
+        }
+
+        private void numerar()
+        {
+            for (int i = 0; i < dgv1.Rows.Count; i++)
+            {
+                dgv1.Rows[i].HeaderCell.Value = (i+1).ToString();
+            }
+        }
+
+        private void dgv1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            rowSelect = e.RowIndex;
+            txtCod.Text = dgv1[0, rowSelect].Value.ToString();
+            txtNombre.Text = dgv1[1, rowSelect].Value.ToString();
+            txtPrecio.Text = dgv1[2, rowSelect].Value.ToString();
         }
     }
 
