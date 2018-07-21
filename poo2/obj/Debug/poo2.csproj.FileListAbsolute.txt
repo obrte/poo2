@@ -8,3 +8,5 @@ D:\Proyectos\POO2\poo2\poo2\obj\Debug\poo2.csproj.GenerateResource.cache
 D:\Proyectos\POO2\poo2\poo2\obj\Debug\poo2.csproj.CoreCompileInputs.cache
 D:\Proyectos\POO2\poo2\poo2\obj\Debug\poo2.exe
 D:\Proyectos\POO2\poo2\poo2\obj\Debug\poo2.pdb
+D:\Proyectos\POO2\poo2\poo2\obj\Debug\poo2.verificador.resources
+D:\Proyectos\POO2\poo2\poo2\obj\Debug\poo2.punto_venta.resources
